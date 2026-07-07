@@ -1,0 +1,75 @@
+name: SunExposure
+options:
+  bundleIdPrefix: com.shimondeitel.sunexposure
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: "W7Q885Q59C"
+    CODE_SIGN_STYLE: Automatic
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: "YES"
+targets:
+  SunExposure:
+    type: application
+    platform: iOS
+    sources:
+      - path: SunExposure
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.sunexposure
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_FILE: SunExposure/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: "YES"
+        GENERATE_INFOPLIST_FILE: "NO"
+  SunExposureTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SunExposureTests
+      - path: SunExposure.storekit
+    dependencies:
+      - target: SunExposure
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.sunexposure.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+  SunExposureUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: SunExposureUITests
+    dependencies:
+      - target: SunExposure
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.sunexposure.uitests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+schemes:
+  SunExposure:
+    build:
+      targets:
+        SunExposure: all
+        SunExposureTests: [test]
+        SunExposureUITests: [test]
+    run:
+      config: Debug
+      storeKitConfiguration: SunExposure.storekit
+    test:
+      config: Debug
+      storeKitConfiguration: SunExposure.storekit
+      targets:
+        - SunExposureTests
+        - SunExposureUITests
+    archive:
+      config: Release
